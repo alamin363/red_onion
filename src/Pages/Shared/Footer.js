@@ -1,10 +1,13 @@
+import { Box } from '@mui/material';
 import React from 'react';
 
 const Footer = () => {
   return (
-    <div>
+    <Box sx={{
+      mt:10
+    }}>
       this is footer
-    </div>
+    </Box>
   );
 };
 
