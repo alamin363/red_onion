@@ -8,13 +8,17 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../Context/Context";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import { Logout } from "@mui/icons-material";
+import { useCart } from "../Context/CardContextProvider";
 const Navbar = () => {
   const { user, signOutUser } = useAuth();
+  const { cart, setCart } = useCart();
 
   const SignOut = () => {
-    return signOutUser().then(res => {
-      alert("log out")
-    }).catch(err => alert("log out failed"))
+    return signOutUser()
+      .then((res) => {
+        alert("log out");
+      })
+      .catch((err) => alert("log out failed"));
   };
   return (
     <Container>

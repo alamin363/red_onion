@@ -9,6 +9,6 @@ const CardContextProvider = ({ children }) => {
     </CARD_CONTEXT.Provider>
   );
 };
-
+// customs hooks
 export const useCart = () => useContext(CARD_CONTEXT);
 export default CardContextProvider;

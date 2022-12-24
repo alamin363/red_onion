@@ -70,7 +70,7 @@ const MealDetails = () => {
               </Button>
             </Stack>
             {/* slider ---- */}
-            <Box sx={{ mt: 3 }}>
+            <Box sx={{ mt: 10 }}>
               <ImageSlider images={meals?.data?.images} />
             </Box>
           </Box>
