@@ -36,7 +36,6 @@ function SamplePrevArrow(props) {
   );
 }
 const ImageSlider = ({ images }) => {
-  console.log(images);
   var settings = {
     dots: true,
     infinite: false,

@@ -9,7 +9,6 @@ const category = ["dinner", "breakfast", "lunch"];
 const FoodeCategory = () => {
   const [value, setValue] = useState(0);
   const { meals, error, loading } = useMeals(category[value]);
-  console.log(meals);
 
   return (
     <Box>

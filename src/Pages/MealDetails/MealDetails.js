@@ -7,13 +7,36 @@ import useMealsById from "../../hooks/useMealsById";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import { CounterBox } from "./MealDetails.style";
-import { Margin } from "@mui/icons-material";
 import ImageSlider from "../../component/ImageSlider/ImageSlider";
+import { useCart } from "../Context/CardContextProvider";
 const MealDetails = () => {
   const { meal } = useParams();
   const { meals, error, loading } = useMealsById(meal);
-  console.log({ meals });
-  const [count, setCount] = useState(0);
+  const [quantity, setQuantity] = useState(0);
+  const { setCart } = useCart();
+  const addToCart = () => {
+    setCart((cart) => [
+      ...cart,
+      {
+        ...meals.data,
+        quantity,
+      },
+    ]);
+  };
+  const adjustQuantity = (type) => {
+    setQuantity(type === "add" ? quantity + 1 : quantity - 1);
+    setCart((cart) => {
+      cart?.map((item) => {
+        if (item._id === meals.data?._id) {
+          return {
+            ...item,
+            quantity: type === "add" ? item.quantity + 1 : item.quantity - 1,
+          };
+        }
+        return item;
+      });
+    });
+  };
   return (
     <Box>
       <Container>
@@ -53,11 +76,11 @@ const MealDetails = () => {
                 {/*  */}
 
                 <CounterBox>
-                  <RemoveIcon onClick={() => setCount(count - 1)} />
+                  <RemoveIcon onClick={() => adjustQuantity("remove")} />
                   <Typography variant="h5" sx={{ width: 20 }} fontWeight={600}>
-                    {count}
+                    {quantity}
                   </Typography>
-                  <AddIcon onClick={() => setCount(count + 1)} />
+                  <AddIcon onClick={() => adjustQuantity("add")} />
                 </CounterBox>
               </Box>
               <Button
@@ -65,6 +88,7 @@ const MealDetails = () => {
                 sx={{
                   width: ["100%", "100%", "40%"],
                 }}
+                onClick={addToCart}
               >
                 Add
               </Button>

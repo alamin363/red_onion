@@ -24,7 +24,6 @@ const SignUp = () => {
   if (user.loading) {
     return <h1>loading</h1>;
   }
-  console.log(user.email);
   return (
     <Box
       sx={{
@@ -88,7 +87,7 @@ const SignUp = () => {
             Already have a account
           </Link>
           <Button sx={{ borderRadius: "8px" }} type="submit">
-            submit
+            Sign Up
           </Button>
         </AuthForm>
       </Container>

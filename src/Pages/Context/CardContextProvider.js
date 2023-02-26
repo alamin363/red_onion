@@ -1,8 +1,7 @@
 import React, { createContext, useContext, useState } from "react";
 export const CARD_CONTEXT = createContext();
 const CardContextProvider = ({ children }) => {
-  const [cart, setCart] = useState();
-
+  const [cart, setCart] = useState([]);
   return (
     <CARD_CONTEXT.Provider value={{ cart, setCart }}>
       {children}

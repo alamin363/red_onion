@@ -1,4 +1,4 @@
-import { Box, Button, IconButton, Stack } from "@mui/material";
+import { Badge, Box, Button, IconButton, Stack } from "@mui/material";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { Container } from "@mui/system";
 import React from "react";
@@ -11,8 +11,7 @@ import { Logout } from "@mui/icons-material";
 import { useCart } from "../Context/CardContextProvider";
 const Navbar = () => {
   const { user, signOutUser } = useAuth();
-  const { cart, setCart } = useCart();
-
+  const { cart } = useCart();
   const SignOut = () => {
     return signOutUser()
       .then((res) => {
@@ -39,7 +38,14 @@ const Navbar = () => {
         </Box>
         <Stack direction="row" spacing={4}>
           <IconButton>
-            <ShoppingCartOutlinedIcon titleAccess="added items" />
+            <Badge
+              badgeContent={cart?.reduce((acu, cur) => {
+                return acu + cur?.quantity;
+              }, 0)}
+              color="primary"
+            >
+              <ShoppingCartOutlinedIcon titleAccess="added items" />
+            </Badge>
           </IconButton>
           {user.user ? (
             <>
